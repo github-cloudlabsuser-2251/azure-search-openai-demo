@@ -1,4 +1,44 @@
+# Importing necessary libraries and modules
 import os
+from abc import ABC
+from dataclasses import dataclass
+from typing import (
+    Any,
+    AsyncGenerator,
+    Awaitable,
+    Callable,
+    List,
+    Optional,
+    TypedDict,
+    Union,
+    cast,
+)
+from urllib.parse import urljoin
+
+# Importing aiohttp for asynchronous HTTP requests
+import aiohttp
+# Importing Azure Search client and models for search operations
+from azure.search.documents.aio import SearchClient
+from azure.search.documents.models import (
+    QueryCaptionResult,
+    QueryType,
+    VectorizedQuery,
+    VectorQuery,
+)
+# Importing OpenAI for AI operations
+from openai import AsyncOpenAI
+
+# Importing local modules
+from core.authentication import AuthenticationHelper
+from text import nonewlines
+
+# Defining a dataclass for Document with optional fields: id, content, embedding, image_embedding
+@dataclass
+class Document:
+    id: Optional[str]
+    content: Optional[str]
+    embedding: Optional[List[float]]
+    image_embedding: Optional[List[float]]import os
 from abc import ABC
 from dataclasses import dataclass
 from typing import (
